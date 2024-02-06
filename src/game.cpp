@@ -39,8 +39,14 @@ void Game::update()
     }
     checkCollision();
     pro.level_up();
+    blo.blood_up();
+    shi.shield_up();
     player1.eat(pro.point.x, pro.point.y);
     player2.eat(pro.point.x, pro.point.y);
+    player1.eat_blood(pro.point.x, pro.point.y);
+    player2.eat_blood(pro.point.x, pro.point.y);
+    player1.eat_shield(pro.point.x, pro.point.y);
+    player2.eat_shield(pro.point.x, pro.point.y);
     checkWinner();
 }
 

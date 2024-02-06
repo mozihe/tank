@@ -6,6 +6,6 @@ class shield
 public:
     shield();
     SDL_Point point;
-    void blood_up();
+    void shield_up();
 };
 #endif //TANK_SHIELD_H

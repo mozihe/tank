@@ -8,6 +8,8 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
+#include "blood.h"
+#include "shield.h"
 
 class Game
 {
@@ -19,6 +21,8 @@ private:
 public:
     Game();
     progress pro;
+    blood blo;
+    shield shi;
     void draw(SDL_Renderer *renderer);
     void update();
     void checkCollision();

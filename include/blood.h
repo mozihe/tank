@@ -3,6 +3,7 @@
 #include <SDL.h>
 class blood
 {
+public:
     blood();
     SDL_Point point;
     void blood_up();

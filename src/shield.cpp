@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 
-void shield::blood_up()
+void shield::shield_up()
 {
     static int mytime=-2000;
     mytime++;

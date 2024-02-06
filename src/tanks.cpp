@@ -42,7 +42,7 @@ tank::tank(Team color)
 
 void tank::eat(int &x, int &y)
 {
-    if(point.x == x && point.y == y)
+    if (point.x == x && point.y == y)
     {
         if (level < 3)
             level++;
@@ -50,4 +50,17 @@ void tank::eat(int &x, int &y)
         y = -50;
     }
 
+}
+void tank::eat_blood(int &x, int &y)
+{
+    if (point.x == x && point.y == y)
+    {
+        HP += 30;
+        if (HP > 100)
+            HP = 100;
+    }
+}
+void tank::eat_shield(int &x, int &y)
+{
+    shield=100;
 }
