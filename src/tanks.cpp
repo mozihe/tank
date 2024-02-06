@@ -26,7 +26,7 @@ tank::tank(Team color)
 {
     HP = 100;
     level = 0;
-    shield = 200;
+    shield = 0;
     if(color == BLUE)
     {
       point.x = 0;
