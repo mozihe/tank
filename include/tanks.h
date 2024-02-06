@@ -1,5 +1,6 @@
 #ifndef TANK_TANKS_H
 #define TANK_TANKS_H
+
 #include <SDL.h>
 #include "config.h"
 

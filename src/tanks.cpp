@@ -2,21 +2,21 @@
 
 void tank::move(Direction direction)
 {
-    if(direction==UP&&point.y>=0)
+    if(direction == UP && point.y >= 0)
     {
-        point.y-=50;
+        point.y -= 50;
     }
-    if(direction==DOWN&&point.y<=850)
+    if(direction == DOWN && point.y <= 850)
     {
-        point.y+=50;
+        point.y += 50;
     }
-    if(direction==RIGHT&&point.x<=1550)
+    if(direction == RIGHT && point.x <= 1550)
     {
-        point.x+=50;
+        point.x += 50;
     }
-    if(direction==UP&&point.x>=0)
+    if(direction==UP && point.x >= 0)
     {
-        point.x-=50;
+        point.x -= 50;
     }
     this->direction = direction;
 }
@@ -24,17 +24,17 @@ void tank::move(Direction direction)
 
 tank::tank(Team color)
 {
-    int HP=100;
-    if(color==BLUE)
+    int HP = 100;
+    if(color == BLUE)
     {
-      point.x=10;
-      point.y=425;
-      direction=RIGHT;
+      point.x = 10;
+      point.y = 425;
+      direction = RIGHT;
     }
-    if(color==RED)
+    if(color == RED)
     {
-        point.x=1540;
-        point.y=425;
-        direction=LEFT;
+        point.x = 1540;
+        point.y = 425;
+        direction = LEFT;
     }
 }
