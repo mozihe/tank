@@ -1,41 +1,41 @@
 #include "tanks.h"
 
-void tank::move(Direction direction)
+void tank::move(Direction myDirection)
 {
-    if(direction == UP && point.y >= 0)
+    if(myDirection == UP && point.y > 0)
     {
         point.y -= 50;
     }
-    if(direction == DOWN && point.y <= 850)
+    else if(myDirection == DOWN && point.y < 850)
     {
         point.y += 50;
     }
-    if(direction == RIGHT && point.x <= 1550)
+    else if(myDirection == RIGHT && point.x < 1550)
     {
         point.x += 50;
     }
-    if(direction==UP && point.x >= 0)
+    else if(myDirection == LEFT && point.x > 0)
     {
         point.x -= 50;
     }
-    this->direction = direction;
+    this->direction = myDirection;
 }
 
 
 tank::tank(Team color)
 {
-    int HP = 100;
-    int level = 0;
+    HP = 100;
+    level = 0;
     if(color == BLUE)
     {
-      point.x = 10;
-      point.y = 425;
+      point.x = 0;
+      point.y = 400;
       direction = RIGHT;
     }
     if(color == RED)
     {
-        point.x = 1540;
-        point.y = 425;
+        point.x = 1550;
+        point.y = 400;
         direction = LEFT;
     }
 }

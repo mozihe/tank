@@ -18,6 +18,8 @@ public:
     void draw(SDL_Renderer* renderer);
     void move();
     bool isOutOfBounds();
+    SDL_Point getPoint();
+    Team getTeam();
 };
 
 #endif

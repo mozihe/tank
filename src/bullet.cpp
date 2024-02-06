@@ -42,3 +42,13 @@ bool Bullet::isOutOfBounds()
         return true;
     return false;
 }
+
+SDL_Point Bullet::getPoint()
+{
+    return location;
+}
+
+Team Bullet::getTeam()
+{
+    return team;
+}

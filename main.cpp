@@ -1,7 +1,7 @@
 #include <SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include "config.h"
-#include "bullet.h"
+#include "game.h"
 
 int main()
 {
@@ -12,7 +12,7 @@ int main()
     const int frameDelay = 1000 / FPS;
     SDL_Event event;
     bool running = true;
-    Bullet bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, UP, RED);
+    Game game;
     while (running)
     {
         Uint32 frameStart = SDL_GetTicks();
@@ -25,41 +25,54 @@ int main()
                 switch (event.key.keysym.sym)
                 {
                 case SDLK_UP:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, UP, RED);
+                    game.getPlayer2()->move(UP);
                     break;
                 case SDLK_DOWN:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, DOWN, RED);
+                    game.getPlayer2()->move(DOWN);
                     break;
                 case SDLK_LEFT:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, LEFT, RED);
+                    game.getPlayer2()->move(LEFT);
                     break;
                 case SDLK_RIGHT:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, RIGHT, RED);
+                    game.getPlayer2()->move(RIGHT);
                     break;
                 case SDLK_w:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, UP, BLUE);
+                    game.getPlayer1()->move(UP);
                     break;
                 case SDLK_s:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, DOWN, BLUE);
+                    game.getPlayer1()->move(DOWN);
                     break;
                 case SDLK_a:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, LEFT, BLUE);
+                    game.getPlayer1()->move(LEFT);
                     break;
                 case SDLK_d:
-                    bullet = Bullet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, RIGHT, BLUE);
+                    game.getPlayer1()->move(RIGHT);
                     break;
                 case SDLK_KP_0:
-                    running = false;
+                    game.shoot(RED, game.getPlayer2()->point.x + 25, game.getPlayer2()->point.y + 25, game.getPlayer2()->direction);
                     break;
                 case SDLK_f:
-                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                    game.shoot(BLUE, game.getPlayer1()->point.x + 25, game.getPlayer1()->point.y + 25, game.getPlayer1()->direction);
+                    break;
                 }
             }
         }
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-        bullet.move();
-        bullet.draw(renderer);
+        if (game.getWinner() == 0)
+        {
+            game.update();
+            game.draw(renderer);
+        }
+        else
+        {
+            if (game.getWinner() == 1)
+                filledCircleRGBA(renderer, 775, 425, 100, 0, 0, 255, 255);
+            else
+                filledCircleRGBA(renderer, 775, 425, 100, 255, 0, 0, 255);
+        }
+
+
         SDL_RenderPresent(renderer);
         Uint32 frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime)

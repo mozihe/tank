@@ -11,6 +11,7 @@ void progress::level_up()
         srand(time(NULL));
         point.x = rand() % 32 + 50;
         point.y = rand() % 18 + 50;
+        mytime = 0;
     }
 }
 progress::progress()
