@@ -13,6 +13,7 @@ public:
     Direction direction;
     Team color;
     SDL_Point point;
-    void move(Direction myDirection);
+    void move(Direction myDirection, int enemyX, int enemyY);
+    void eat(int &x, int &y);
 };
 #endif //TANK_TANKS_H

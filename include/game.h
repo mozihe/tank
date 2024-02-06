@@ -4,6 +4,7 @@
 #include "config.h"
 #include "bullet.h"
 #include "tanks.h"
+#include "progress.h"
 #include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
@@ -17,6 +18,7 @@ private:
 
 public:
     Game();
+    progress pro;
     void draw(SDL_Renderer *renderer);
     void update();
     void checkCollision();
@@ -25,7 +27,8 @@ public:
     tank *getPlayer2();
     std::vector<Bullet> getBullets();
     int getWinner();
-    void shoot(Team team, int x, int y, Direction direction);
+    void shoot(Team team, int x, int y, Direction direction, int level);
+
 };
 
 #endif

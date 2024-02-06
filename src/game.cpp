@@ -20,7 +20,12 @@ void Game::draw(SDL_Renderer *renderer)
             bullet.draw(renderer);
         }
     }
-
+    SDL_Rect rectRedHP = {player2.point.x, player2.point.y - 10, player2.HP / 2, 5};
+    SDL_Rect rectBlueHP = {player1.point.x, player1.point.y - 10, player1.HP / 2, 5};
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    SDL_RenderFillRect(renderer, &rectRedHP);
+    SDL_RenderFillRect(renderer, &rectBlueHP);
+    pro.draw(renderer);
 }
 
 void Game::update()
@@ -33,6 +38,9 @@ void Game::update()
         }
     }
     checkCollision();
+    pro.level_up();
+    player1.eat(pro.point.x, pro.point.y);
+    player2.eat(pro.point.x, pro.point.y);
     checkWinner();
 }
 
@@ -48,12 +56,38 @@ void Game::checkCollision()
         }
         if (bullet.getPoint().x > player1.point.x && bullet.getPoint().x < player1.point.x + 50 && bullet.getPoint().y > player1.point.y && bullet.getPoint().y < player1.point.y + 50 && bullet.getTeam() == RED)
         {
-            player1.HP -= 10;
+            int Harm = 10;
+            switch (bullet.getLevel())
+            {
+                case 1:
+                    Harm = 15;
+                    break;
+                case 2:
+                    Harm = 20;
+                    break;
+                case 3:
+                    Harm = 25;
+                    break;
+            }
+            player1.HP -= Harm;
             bullets.erase(bullets.begin() + i);
         }
         if (bullet.getPoint().x > player2.point.x && bullet.getPoint().x < player2.point.x + 50 && bullet.getPoint().y > player2.point.y && bullet.getPoint().y < player2.point.y + 50 && bullet.getTeam() == BLUE)
         {
-            player2.HP -= 10;
+            int Harm = 10;
+            switch (bullet.getLevel())
+            {
+                case 1:
+                    Harm = 15;
+                    break;
+                case 2:
+                    Harm = 20;
+                    break;
+                case 3:
+                    Harm = 25;
+                    break;
+            }
+            player2.HP -= Harm;
             bullets.erase(bullets.begin() + i);
         }
     }
@@ -91,7 +125,7 @@ int Game::getWinner()
     return winner;
 }
 
-void Game::shoot(Team team, int x, int y, Direction direction)
+void Game::shoot(Team team, int x, int y, Direction direction, int level)
 {
-    bullets.emplace_back(x, y, direction, team);
+    bullets.emplace_back(x, y, direction, team, level);
 }

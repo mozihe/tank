@@ -13,13 +13,16 @@ private:
     int speed;
     Direction direction;
     Team team;
+    int level;
+
 public:
-    Bullet(int x, int y, Direction direction, Team team);
+    Bullet(int x, int y, Direction direction, Team team, int level);
     void draw(SDL_Renderer* renderer);
     void move();
     bool isOutOfBounds();
     SDL_Point getPoint();
     Team getTeam();
+    int getLevel();
 };
 
 #endif
