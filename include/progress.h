@@ -4,7 +4,6 @@
 class progress
 {
     progress();
-    int level;
     SDL_Point point;
     void level_up();
 };

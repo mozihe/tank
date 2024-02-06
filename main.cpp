@@ -48,7 +48,7 @@ int main()
                 case SDLK_d:
                     game.getPlayer1()->move(RIGHT);
                     break;
-                case SDLK_KP_0:
+                case SDLK_m:
                     game.shoot(RED, game.getPlayer2()->point.x + 25, game.getPlayer2()->point.y + 25, game.getPlayer2()->direction);
                     break;
                 case SDLK_f:
