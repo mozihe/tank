@@ -7,5 +7,7 @@ public:
     shield();
     SDL_Point point;
     void shield_up();
+    void draw(SDL_Renderer *renderer);
+    int mytime;
 };
 #endif //TANK_SHIELD_H

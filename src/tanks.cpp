@@ -26,6 +26,7 @@ tank::tank(Team color)
 {
     HP = 100;
     level = 0;
+    shield = 200;
     if(color == BLUE)
     {
       point.x = 0;
@@ -58,9 +59,17 @@ void tank::eat_blood(int &x, int &y)
         HP += 30;
         if (HP > 100)
             HP = 100;
+        x = -50;
+        y = -50;
     }
 }
 void tank::eat_shield(int &x, int &y)
 {
-    shield=100;
+    if (point.x == x && point.y == y)
+    {
+        shield = 200;
+        x = -50;
+        y = -50;
+    }
+
 }

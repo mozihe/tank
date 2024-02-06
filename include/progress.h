@@ -9,5 +9,6 @@ public:
     SDL_Point point;
     void level_up();
     void draw(SDL_Renderer *renderer);
+    int mytime;
 };
 #endif //TANK_PROGRESS_H

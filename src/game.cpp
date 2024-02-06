@@ -26,6 +26,16 @@ void Game::draw(SDL_Renderer *renderer)
     SDL_RenderFillRect(renderer, &rectRedHP);
     SDL_RenderFillRect(renderer, &rectBlueHP);
     pro.draw(renderer);
+    blo.draw(renderer);
+    shi.draw(renderer);
+    if (player1.shield > 0)
+    {
+        filledCircleRGBA(renderer, player1.point.x + 25, player1.point.y + 25, 50, 100, 150, 255, player1.shield);
+    }
+    if (player2.shield > 0)
+    {
+        filledCircleRGBA(renderer, player2.point.x + 25, player2.point.y + 25, 50, 100, 150, 255, player2.shield);
+    }
 }
 
 void Game::update()
@@ -43,10 +53,10 @@ void Game::update()
     shi.shield_up();
     player1.eat(pro.point.x, pro.point.y);
     player2.eat(pro.point.x, pro.point.y);
-    player1.eat_blood(pro.point.x, pro.point.y);
-    player2.eat_blood(pro.point.x, pro.point.y);
-    player1.eat_shield(pro.point.x, pro.point.y);
-    player2.eat_shield(pro.point.x, pro.point.y);
+    player1.eat_blood(blo.point.x, blo.point.y);
+    player2.eat_blood(blo.point.x, blo.point.y);
+    player1.eat_shield(shi.point.x, shi.point.y);
+    player2.eat_shield(shi.point.x, shi.point.y);
     checkWinner();
 }
 
@@ -75,7 +85,14 @@ void Game::checkCollision()
                     Harm = 25;
                     break;
             }
-            player1.HP -= Harm;
+            if (player1.shield > 0)
+            {
+                player1.shield -= Harm;
+                if (player1.shield < 0)
+                    player1.shield = 0;
+            }
+            else
+               player1.HP -= Harm;
             bullets.erase(bullets.begin() + i);
         }
         if (bullet.getPoint().x > player2.point.x && bullet.getPoint().x < player2.point.x + 50 && bullet.getPoint().y > player2.point.y && bullet.getPoint().y < player2.point.y + 50 && bullet.getTeam() == BLUE)
@@ -93,7 +110,14 @@ void Game::checkCollision()
                     Harm = 25;
                     break;
             }
-            player2.HP -= Harm;
+            if (player2.shield > 0)
+            {
+                player2.shield -= Harm;
+                if (player2.shield < 0)
+                    player2.shield = 0;
+            }
+            else
+                player2.HP -= Harm;
             bullets.erase(bullets.begin() + i);
         }
     }

@@ -1,10 +1,12 @@
 #include <SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
+#include <ctime>
 #include "config.h"
 #include "game.h"
 
 int main()
 {
+    srand(time(NULL));
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("Tank", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -71,7 +73,6 @@ int main()
             else
                 filledCircleRGBA(renderer, 775, 425, 100, 255, 0, 0, 255);
         }
-
 
         SDL_RenderPresent(renderer);
         Uint32 frameTime = SDL_GetTicks() - frameStart;
