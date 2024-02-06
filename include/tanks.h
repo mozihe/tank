@@ -9,6 +9,7 @@ class tank
 public:
     tank(Team color);
     int HP;
+    int level;
     Direction direction;
     Team color;
     SDL_Point point;

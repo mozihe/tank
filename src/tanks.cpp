@@ -25,6 +25,7 @@ void tank::move(Direction direction)
 tank::tank(Team color)
 {
     int HP = 100;
+    int level = 0;
     if(color == BLUE)
     {
       point.x = 10;
