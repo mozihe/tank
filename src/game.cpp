@@ -8,6 +8,16 @@ Game::Game()
 void Game::regame()
 {
     winner = 0;
+    player1.HP = 100;
+    player2.HP = 100;
+    player1.shield = 0;
+    player2.shield = 0;
+    player1.point.x = 0;
+    player1.point.y = 400;
+    player1.direction = RIGHT;
+    player2.point.x = 1550;
+    player2.point.y = 400;
+    player2.direction = LEFT;
 }
 
 void Game::draw(SDL_Renderer *renderer)

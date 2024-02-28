@@ -72,7 +72,7 @@ int main()
         else
         {
             if (game.getWinner() == 1) {
-                scorer++;
+                scoreb++;
                 filledCircleRGBA(renderer, 775, 425, 100, 0, 0, 255, 255);
                 SDL_SetWindowTitle(window,"点击T键继续游戏");
                 SDL_RenderPresent(renderer);
@@ -85,18 +85,17 @@ int main()
                     }
                     if(event.key.keysym.sym == SDLK_t)
                     {
-                        printf("1");
                         game.regame();
                         goto lj35;
                     }
                 }
                 lj35:
                 sprintf(title, "tank      BLUE: %d   RED: %d", scoreb,scorer);
-
+                SDL_SetWindowTitle(window, title);
                 continue;
             }
             else {
-                scoreb++;
+                scorer++;
                 filledCircleRGBA(renderer, 775, 425, 100, 255, 0, 0, 255);
                 SDL_SetWindowTitle(window,"点击T键继续游戏");
                 SDL_RenderPresent(renderer);
@@ -109,13 +108,14 @@ int main()
                     }
                     if(event.key.keysym.sym == SDLK_t)
                     {
-                        printf("1");
                         game.regame();
                         goto laji35;
                     }
                 }
                 laji35:
                 sprintf(title, "tank      BLUE: %d   RED: %d", scoreb,scorer);
+                SDL_SetWindowTitle(window, title);
+
                 continue;
             }
         }
