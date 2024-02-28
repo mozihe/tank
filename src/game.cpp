@@ -5,6 +5,11 @@ Game::Game()
     winner = 0;
 }
 
+void Game::regame()
+{
+    winner = 0;
+}
+
 void Game::draw(SDL_Renderer *renderer)
 {
     SDL_Rect rectRed = {player2.point.x, player2.point.y, 50, 50};

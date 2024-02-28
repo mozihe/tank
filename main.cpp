@@ -12,6 +12,9 @@ int main()
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
+    char title[100];
+    int scorer = 0;
+    int scoreb = 0;
     SDL_Event event;
     bool running = true;
     Game game;
@@ -50,10 +53,10 @@ int main()
                 case SDLK_d:
                     game.getPlayer1()->move(RIGHT, game.getPlayer2()->point.x, game.getPlayer2()->point.y);
                     break;
-                case SDLK_KP_0:
+                case SDLK_SPACE:
                     game.shoot(RED, game.getPlayer2()->point.x + 25, game.getPlayer2()->point.y + 25, game.getPlayer2()->direction, game.getPlayer2()->level);
                     break;
-                case SDLK_f:
+                case SDLK_q:
                     game.shoot(BLUE, game.getPlayer1()->point.x + 25, game.getPlayer1()->point.y + 25, game.getPlayer1()->direction, game.getPlayer1()->level);
                     break;
                 }
@@ -68,16 +71,60 @@ int main()
         }
         else
         {
-            if (game.getWinner() == 1)
+            if (game.getWinner() == 1) {
+                scorer++;
                 filledCircleRGBA(renderer, 775, 425, 100, 0, 0, 255, 255);
-            else
+                SDL_SetWindowTitle(window,"点击T键继续游戏");
+                SDL_RenderPresent(renderer);
+                while(1)
+                {
+                    SDL_WaitEvent(&event);
+                    if(event.type == SDL_QUIT)
+                    {
+                        return 0;
+                    }
+                    if(event.key.keysym.sym == SDLK_t)
+                    {
+                        printf("1");
+                        game.regame();
+                        goto lj35;
+                    }
+                }
+                lj35:
+                sprintf(title, "tank      BLUE: %d   RED: %d", scoreb,scorer);
+
+                continue;
+            }
+            else {
+                scoreb++;
                 filledCircleRGBA(renderer, 775, 425, 100, 255, 0, 0, 255);
+                SDL_SetWindowTitle(window,"点击T键继续游戏");
+                SDL_RenderPresent(renderer);
+                while(1)
+                {
+                    SDL_WaitEvent(&event);
+                    if(event.type == SDL_QUIT)
+                    {
+                        return 0;
+                    }
+                    if(event.key.keysym.sym == SDLK_t)
+                    {
+                        printf("1");
+                        game.regame();
+                        goto laji35;
+                    }
+                }
+                laji35:
+                sprintf(title, "tank      BLUE: %d   RED: %d", scoreb,scorer);
+                continue;
+            }
         }
 
         SDL_RenderPresent(renderer);
         Uint32 frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime)
             SDL_Delay(frameDelay - frameTime);
+
     }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

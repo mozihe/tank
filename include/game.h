@@ -20,6 +20,7 @@ private:
 
 public:
     Game();
+    void regame();
     progress pro;
     blood blo;
     shield shi;
