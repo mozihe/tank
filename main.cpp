@@ -76,9 +76,9 @@ int main()
                 filledCircleRGBA(renderer, 775, 425, 100, 0, 0, 255, 255);
                 SDL_SetWindowTitle(window,"点击T键继续游戏");
                 SDL_RenderPresent(renderer);
-                while(1)
+                while( SDL_WaitEvent(&event))
                 {
-                    SDL_WaitEvent(&event);
+
                     if(event.type == SDL_QUIT)
                     {
                         return 0;
@@ -100,9 +100,9 @@ int main()
                 filledCircleRGBA(renderer, 775, 425, 100, 255, 0, 0, 255);
                 SDL_SetWindowTitle(window,"点击T键继续游戏");
                 SDL_RenderPresent(renderer);
-                while(1)
+                while(SDL_WaitEvent(&event))
                 {
-                    SDL_WaitEvent(&event);
+
                     if(event.type == SDL_QUIT)
                     {
                         return 0;
